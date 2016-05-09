@@ -1,4 +1,4 @@
-# FLiR-lepton
+# FLiR-lepton with Arduino Due
 
 To use this code, connect the camera, open the serial monitor and use the following commands for its respective actions:
 
