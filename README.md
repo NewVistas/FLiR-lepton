@@ -8,7 +8,7 @@ To use this code, connect the camera, open the serial monitor and use the follow
 - To find the minimum raw value of the captured Image: getTemperature
 
 In the folder connections there is an image to show how the Arduino Due has to be connected with the PureEngineering Module.
-Not that the serial monitor has to be setted as to write a new line in the right bottom corner.
-If the action capture an Image doesn't work, check the connections and reset the Arduino.
+
+Please, note that the serial monitor has to be setted as to write a new line in the right bottom corner. Moreover, you should know that there is a checkpoint system for the actions, so when an image is captured, you should expect two <OK>, if there is only one, it means that the process was not completed successfully, reset the Arduino and try again.
 
 If you have any issues, please contact me at josepbordesjove@gmail.com and ask.
