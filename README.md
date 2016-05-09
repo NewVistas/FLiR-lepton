@@ -9,5 +9,6 @@ To use this code, connect the camera, open the serial monitor and use the follow
 
 In the folder connections there is an image to show how the Arduino Due has to be connected with the PureEngineering Module.
 Not that the serial monitor has to be setted as to write a new line in the right bottom corner.
+If the action capture an Image doesn't work, check the connections and reset the Arduino.
 
 If you have any issues, please contact me at josepbordesjove@gmail.com and ask.
