@@ -1,7 +1,6 @@
 //Status reg 15:8 Error Code  7:3 Reserved 2:Boot Status 1:Boot Mode 0:busy
 
-void set_reg(unsigned int reg)
-{
+void set_reg(unsigned int reg){
   byte error;
   Wire.beginTransmission(ADDRESS); // transmit to device #4
   Wire.write(reg >> 8 & 0xff);

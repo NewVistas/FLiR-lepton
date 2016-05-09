@@ -43,9 +43,10 @@ bool runonce = 0;
 bool donecapturing = 0;
 
 //Initialize the variable used for comparing the user entry
-String CAPTURE = "captureIma";
-String TRANSFER = "transferIm";
-String GET_TEMPERATURE = "getTempera";
+String CAPTURE = "captureImage";
+String TRANSFER = "transferImage";
+String GET_TEMPERATURE = "getTemperature";
+String FIND_MIN = "findMin";
 String OK = "<OK>";
 
 
@@ -105,16 +106,20 @@ void loop(){
     Serial.println(OK);
     for(i=0;i<79;i++){
       for(j=0;j<59;j++){
-        Serial.println((int)image[i][j]-minval, DEC);
+        Serial.print((int)image[i][j], DEC);
+        Serial.print("\t");
       }
+      Serial.print("\n");
     }
     Serial.println(OK);
   }else if(userAction == GET_TEMPERATURE){
     Serial.println(OK);
     lep_command(SYS, 0x10 >> 2 , GET);
     read_data();
+  }else if(userAction == FIND_MIN){
+    find_min();
   }else{
-    Serial.println("This command has no action.");
+    Serial.println("This command has no action. Please read the README file to know the possible actions.");
   }
   Serial.flush();
   donecapturing = false;

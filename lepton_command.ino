@@ -1,4 +1,4 @@
-void lepton_command(unsigned int moduleID, unsigned int commandID, unsigned int command){
+void lep_command(unsigned int moduleID, unsigned int commandID, unsigned int command){
   byte error;
   Wire.beginTransmission(ADDRESS);
 
