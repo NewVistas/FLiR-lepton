@@ -101,7 +101,6 @@ void loop(){
       buffer_image();
     }    
     Serial.println(OK);
-    find_min();
   }else if(userAction == TRANSFER){
     Serial.println(OK);
     for(i=0;i<79;i++){
