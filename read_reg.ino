@@ -8,15 +8,15 @@ int read_reg(unsigned int reg)
   Wire.requestFrom(ADDRESS, 2);
 
   reading = Wire.read();  // receive high byte (overwrites previous reading)
-  //Serial.println(reading);
+  Serial.println(reading);
   reading = reading << 8;    // shift high byte to be high 8 bits
 
   reading |= Wire.read(); // receive low byte as lower 8 bits
-  //Serial.print("reg:");
-  //Serial.print(reg);
-  //Serial.print("==0x");
-  //Serial.print(reading, HEX);
-  //Serial.print(" binary:");
-  //Serial.println(reading, BIN);
+  Serial.print("reg:");
+  Serial.print(reg);
+  Serial.print("==0x");
+  Serial.print(reading, HEX);
+  Serial.print(" binary:");
+  Serial.println(reading, BIN);
   return reading;
 }

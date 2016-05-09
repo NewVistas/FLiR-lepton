@@ -18,7 +18,7 @@ void lepton_command(unsigned int moduleID, unsigned int commandID, unsigned int 
 
   error = Wire.endTransmission();    // stop transmitting
   if (error != 0){
-    //Serial.print("error=");
-    //Serial.println(error);
+    Serial.print("error=");
+    Serial.println(error);
   }
 }

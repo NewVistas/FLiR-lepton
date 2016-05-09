@@ -1,11 +1,16 @@
-//Last modified on 11th december of 2015
+ //Last modified on 11th december of 2015
 
 //initialize the libraries used for the communications
 #include <Wire.h>
 #include <SPI.h>
 
 byte x = 0;
+
+//define memory adresses to acces them
 #define ADDRESS  (0x2A)
+#define COMMANDID_REG (0x04)
+#define DATALEN_REG (0x06)
+#define DATA0 (0x08)
 
 //define the comands to control the communication i2c (used for confguring the module)
 #define AGC (0x01)
@@ -31,22 +36,23 @@ word image[image_x][image_y];
 //Initialize the variables used in this sketch
 int i,j;
 float AUXtemperature;
-String matlabAction;
+String userAction;
 word minval = 99999;
 boolean captureImage = false;
 bool runonce = 0;
 bool donecapturing = 0;
 
 //Initialize the variable used for comparing the user entry
-String SETUP = "setupConfi";
-String BEGIN = "beginTrans";
-String END = "endTransmi";
 String CAPTURE = "captureIma";
 String TRANSFER = "transferIm";
+String GET_TEMPERATURE = "getTempera";
 String OK = "<OK>";
 
 
 void setup(){
+  pinMode(13, OUTPUT);
+  digitalWrite(13, LOW);
+  
   //initialize i2c communication
   Wire.begin();
 
@@ -64,35 +70,38 @@ void setup(){
   //set the time out of the serial input
   Serial.setTimeout(90000UL);
 
-  Serial.println(SETUP);
+  Serial.println("Setup has been finished.");
 }
 
 void loop(){  
   if (runonce == 0) {
-    Serial.println(BEGIN);
+    Serial.println("The program is ready to be used, please write a command;");
     int i;
     int reading = 0;
     String debugString;
+
+    //This functions enables the agc mode, please remove the "//" to activate it
+    //agc_enable();
 
     runonce = 1;
     delay(200);
   }
     
   //assign the user input into a variable
-  matlabAction = Serial.readStringUntil('\n');
+  userAction = Serial.readStringUntil('\n');
 
   //depend on the user input do a ceratin action
-  if(matlabAction == CAPTURE){
+  if(userAction == CAPTURE){
     lepton_sync();
     delay(50);
     Serial.println(OK);
     while(donecapturing == false){
       read_lepton_frame();
       buffer_image();
-    }
+    }    
     Serial.println(OK);
     find_min();
-  }else if(matlabAction == TRANSFER){
+  }else if(userAction == TRANSFER){
     Serial.println(OK);
     for(i=0;i<79;i++){
       for(j=0;j<59;j++){
@@ -100,8 +109,12 @@ void loop(){
       }
     }
     Serial.println(OK);
+  }else if(userAction == GET_TEMPERATURE){
+    Serial.println(OK);
+    lep_command(SYS, 0x10 >> 2 , GET);
+    read_data();
   }else{
-    
+    Serial.println("This command has no action.");
   }
   Serial.flush();
   donecapturing = false;

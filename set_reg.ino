@@ -8,9 +8,8 @@ void set_reg(unsigned int reg)
   Wire.write(reg & 0xff);            // sends one byte
 
   error = Wire.endTransmission();    // stop transmitting
-  if (error != 0)
-  {
-    //Serial.print("error=");
-    //Serial.println(error);
+  if (error != 0){
+    Serial.print("error=");
+    Serial.println(error);
   }
 }
