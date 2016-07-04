@@ -30,6 +30,10 @@ You should know that there is a checkpoint system for the actions, so when an im
 
 To visualize the thermal image, what you can do is copy the data from the serial monitor, paste it in an excel sheet and give the data a conditional coloured format.
 
+Don't use a breadboard between the camera and the Arduino, it may cause some issues, connect it directly with wires.
+
+Be sure that the lepton core is correctly fitted into its socket, but be careful doing it.
+
 ### From Raw to temperature
 
 You cannot get directly those values from the camera, first you should do a calibration. The steps I did are the following:
