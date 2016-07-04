@@ -34,6 +34,8 @@ Don't use a breadboard between the camera and the Arduino, it may cause some iss
 
 Be sure that the lepton core is correctly fitted into its socket, but be careful doing it.
 
+Let the camera running for at least 5 minutes before start using it. It will give you more constant values because the core will be heated.
+
 ### From Raw to temperature
 
 You cannot get directly those values from the camera, first you should do a calibration. The steps I did are the following:
